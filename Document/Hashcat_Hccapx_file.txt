@@ -1,4 +1,4 @@
-CHAY CHE DO MONITOR MODE CHO USB WIFI TP-LINK WN722N-V3
+#CHAY CHE DO MONITOR MODE CHO USB WIFI TP-LINK WN722N-V3
 
     1. Ket noi  TP-Link TL-WN722N
     2. Chay leng sau:
@@ -16,7 +16,7 @@ CHAY CHE DO MONITOR MODE CHO USB WIFI TP-LINK WN722N-V3
       sudo iwconfig 
 
 
-LAY FILE .CAP
+#LAY FILE .CAP
 
     B1: Truy cap vao file chua airgeddon  (cd /home/kali/airgeddon)
     B2: chay truong trinh airgeddon
@@ -31,14 +31,14 @@ LAY FILE .CAP
     B8: dien thoi gian thuc hien
     B9: dien noi luu file cap
 
-CHUYEN DOI .CAP SANG HCCAPX
+#CHUYEN DOI .CAP SANG HCCAPX
 
     B1: Truy cap vao file hashcat-utils
     B2: chay hashcat-utils bang cach
         cd /home/kali/hashcat-utils/src
         ./cap2hccapx.bin URL/File.cap URL/File_save (chuyen doi sang file hccapx luu o duong dan URL/File_save)
 
-CRACK PASS BANG HASHCAT
+#CRACK PASS BANG HASHCAT
 
     B1: Chay qua trinh crack
     hashcat -m 2500 URL/File_save -i --increment-min=<number> --increment-max=<number> -a 3 'Charset'
