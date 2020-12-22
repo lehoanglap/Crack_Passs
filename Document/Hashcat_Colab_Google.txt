@@ -17,6 +17,8 @@
 
 # Dowload file .hccapx in github (https://github.com/lehoanglap/Crack_Passs)
 
+  !git clone https://github.com/lehoanglap/Crack_Passs.git && cd Crack_Passs/File_Hccapx && ls && pwd
+
   !git clone https://github.com/lehoanglap/Crack_Passs.git
   !cd Crack_Passs/File_Hccapx
   !ls
