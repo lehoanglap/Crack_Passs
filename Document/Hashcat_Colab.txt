@@ -1,0 +1,43 @@
+# Check GPU Specs
+
+  !navidia-smi
+
+# Install Hashcat
+  
+  !apt install cmake build-essential -y
+  !apt install checkinstall git -y
+  !git clone https://github.com/hashcat/hashcat.git
+  !cd hashcat
+  !git submodule update --init
+  !make
+  !make install
+
+# Dowload file .hccapx in github (https://github.com/lehoanglap/Crack_Passs)
+
+  !git clone https://github.com/lehoanglap/Crack_Passs.git
+  !cd Crack_Passs/File_Hccapx
+  !ls
+  !pwd --lay duong dan file .hccapx
+
+# Run Hashcat crack
+
+  !hashcat -m 2500 URL/File_save -i --increment-min=<number> --increment-max=<number> -a 3 'Charset'
+  
+  Trong do: URL/File_save: dia chi luu file .hccapx
+                --increment-min=<number>: ki tu min pass VD --increment-min=8;
+                --increment-max=<number>: ki tu min pass VD --increment-max=10;
+
+                Charset - Dinh dang pass
+                  ?l: abcdefghijklmnopqrstuvwxyz
+                  ?u: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                  ?d: 0123456789
+                  ?h: 0123456789abcdef
+                  ?H: 0123456789ABCDEF
+                  ?s: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+                  ?a: ?l?u?d?s
+                  ?b: 0x00 - 0xff
+# fprint --show
+
+  !hashcat -m 2500 URL/File_save -i --increment-min=<number> --increment-max=<number> -a 3 'Charset' --force --show
+ 
+
