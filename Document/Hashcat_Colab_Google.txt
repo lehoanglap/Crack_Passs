@@ -26,7 +26,7 @@
 
 # Run Hashcat crack
 
-  !hashcat -m 2500 URL/File_save -i --increment-min=<number> --increment-max=<number> -a 3 'Charset'
+  !hashcat -m 2500 URL/File_save -i --increment-min=<number> --increment-max=<number> -a 3 -w 3 'Charset'
   
   Trong do: URL/File_save: dia chi luu file .hccapx
                 --increment-min=<number>: ki tu min pass VD --increment-min=8;
