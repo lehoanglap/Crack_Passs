@@ -1,6 +1,6 @@
 # Check GPU Specs
 
-  !navidia-smi
+  !nvidia-smi
 
 # Install Hashcat
   
