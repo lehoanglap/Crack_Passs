@@ -3,6 +3,8 @@
   !nvidia-smi
 
 # Install Hashcat
+
+  !apt install cmake build-essential -y && apt install checkinstall git -y && git clone https://github.com/hashcat/hashcat.git && cd hashcat && git submodule update --init &&      make && make install
   
   !apt install cmake build-essential -y
   !apt install checkinstall git -y
@@ -11,6 +13,7 @@
   !git submodule update --init
   !make
   !make install
+  
 
 # Dowload file .hccapx in github (https://github.com/lehoanglap/Crack_Passs)
 
