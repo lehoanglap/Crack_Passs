@@ -45,4 +45,29 @@
 
   !hashcat -m 2500 URL/File_save -i --increment-min=<number> --increment-max=<number> -a 3 'Charset' --force --show
  
+# Duy trì trạng thái chạy liên tục colab google 12h (bằng cách click liên tục vào nút kết nối)
+
+   var startClickConnect = function startClickConnect(){
+      var clickConnect = function clickConnect(){
+          console.log("click");
+          document.querySelector("#top-toolbar > colab-connect-button").shadowRoot.querySelector("#connect").click();
+          console.log("end-click");
+           
+      };
+
+      var intervalId = setInterval(clickConnect, 60000);
+
+      var stopClickConnectHandler = function stopClickConnect() {
+          console.log("Tắt auto click - Start");
+          clearInterval(intervalId);
+          console.log("Tắt auto click hoàn tất");
+      };
+
+      return stopClickConnectHandler;
+  };
+  // Gọi hàm chạy auto click
+  var stopClickConnect = startClickConnect();
+  //Gọi hàm stop autoclick
+  var stopClickConnect = stopClickConnect();
+
 
